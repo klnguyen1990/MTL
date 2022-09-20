@@ -10,6 +10,8 @@ Main program :
 - Pytorch_dataloader.py : load data into minibatch + data augmentation
 
 Other program : 
+- list_patient.ipynb : train/test split for treatment reponse classification
+- list_patient_diff.ipynb : train/test split for diffuse classification
 - Pytorch_utils : contains posprocessing tools, display graphics, get balance data, functions to calculate FROC 
 - preprocessing_Pytorch : image preprocessing, get list patient/label functions
 - Stats.py / P_value : compute p-value using Delong method
