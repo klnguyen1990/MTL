@@ -2,7 +2,7 @@
 # TEP Image directory : 
 - '/media/nguyen-k/A75D-9A3A/CASSIOPET/dcm_baseline'
 
-# Wrokspace : 
+# Workspace : 
 - '/home/nguyen-k/Bureau/segCassiopet2'
 - Structure of the workspace directory : 
   * scripts : pretrained nnUnet, main program, other program (listed bellow)
