@@ -1,8 +1,8 @@
 # MTL
-TEP Image directory : 
+# TEP Image directory : 
 - '/media/nguyen-k/A75D-9A3A/CASSIOPET/dcm_baseline'
 
-Wrokspace : 
+# Wrokspace : 
 - '/home/nguyen-k/Bureau/segCassiopet2'
 - Structure of the workspace directory : 
   * scripts : pretrained nnUnet, main program, other program (listed bellow)
@@ -17,14 +17,14 @@ Wrokspace :
    - imagesPET_Positif/Negatif : stock compressed niffti images for patient avec ou sans focal lesion (use in list_patient.ipynb)
    - label_seg : stock focal lesion grounthTrue in compressed niffti format (used in prepocessing_Pytorch.py)
 
-Pretrained nnUnet: run all python scripts below in following order
+# Pretrained nnUnet: run all python scripts below in following order
 - setOrig.ipynb : to set all images to the same cordinates of origin and pixel spacing.
 - makejson.ipynb : to generate data JSON file which containt all information about data (labels, train/val dataset)
 - run on terminal : 'nnUNet_plan_and_preprocess -t $task --verify_dataset_integrity' to check where dataset respect to nnUnet format for input.
   Replace $task by 1 for PET images with SUV normalization
 - run on terminal 'nnUNet_train 3d_fullres nnUNetTrainerV2 $task $fold' to obtain a pretrained model. This pretrained model will be stocked in '/media/nguyen-k/nnUNet_trained_models/nnUNet/3d_fullres/Task001/nnUNetTrainerV2__nnUNetPlansv2.1/fold_0/model_best.model.pkl' (used in Pytorch_multitas***.ipynb)
 
-Main program : 
+# Main program : 
 - Pytorch_multitask_nnunet.ipynb (MTL-3) : Treatment reponse classification + seg + autoencoder
 - Pytorch_multitask_nnunet_4diffuse_noSeg.ipynb (MTL-3DF) : Treatment reponse classification + diffuse classification + autoencoder
 - Pytorch_multitask_nnunet_4diffuse (MTL-4) :  Treatment reponse classification + diffuse classification + seg + autoencoder
