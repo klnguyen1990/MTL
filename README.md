@@ -14,7 +14,7 @@ Wrokspace :
    - imagesPET_Positif/Negatif : stock compressed niffti images for patient avec ou sans focal lesion (use in list_patient.ipynb)
    - label_seg : stock focal lesion grounthTrue in compressed niffti format (used in prepocessing_Pytorch.py)
 
-Pretrained nnUnet: run all python scripts below in fllowing order
+Pretrained nnUnet: run all python scripts below in following order
 - setOrig.ipynb : to set all images to the same cordinates of origin and pixel spacing.
 - makejson.ipynb : to generate data JSON file which containt all information about data (labels, train/val dataset)
 - run on terminal : 'nnUNet_plan_and_preprocess -t $task --verify_dataset_integrity' to check where dataset respect to nnUnet format for input.
