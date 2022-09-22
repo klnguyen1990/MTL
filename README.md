@@ -15,7 +15,7 @@ Wrokspace :
    - label_seg : stock focal lesion grounthTrue in compressed niffti format (used in prepocessing_Pytorch.py)
 
 Pretrained nnUnet: run all python scripts below in fllowing order
-- setOrig.ipynb : to set all images towards the same original and pixel spacing.
+- setOrig.ipynb : to set all images to the same cordinates of origin and pixel spacing.
 - makejson.ipynb : to generate data JSON file which containt all information about data (labels, train/val dataset)
 - run on terminal : 'nnUNet_plan_and_preprocess -t $task --verify_dataset_integrity' to check where dataset respect to nnUnet format for input.
   Replace $task by 1 for PET images with SUV normalization
@@ -39,4 +39,4 @@ Other program :
 - Stats.py / P_value : compute p-value using Delong method
 - roc_Precision_Recall.py : compute AUCROC score and display ROC curves 
 - plot_froc.ipynb : display FROC curves
-- gradcam.py : CAM/ GRad CAM functions
+- gradcam.py : CAM/ Grad-CAM functions
