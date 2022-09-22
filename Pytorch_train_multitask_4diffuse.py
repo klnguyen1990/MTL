@@ -13,16 +13,12 @@ from sklearn import metrics
 #from scipy.ndimage import label
 import scipy.ndimage as nd
 
-os.system('jupyter nbconvert --to python Pytorch_dataloader.ipynb')
 from Pytorch_dataloader import dataloader_PET, dataloader_PET_CT_fusion_diffuse, dataloader_PET_Diffuse
 
-os.system('jupyter nbconvert --to python gradcam.ipynb')
 from gradcam import *
 
-os.system('jupyter nbconvert --to python Pytorch_utils.ipynb')
 from Pytorch_utils import *
 
-os.system('jupyter nbconvert --to python roc_Precision_Recall.ipynb')
 from roc_Precision_Recall import *
 
 # In[2]:

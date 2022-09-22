@@ -13,16 +13,12 @@ from sklearn import metrics
 #from scipy.ndimage import label
 import scipy.ndimage as nd
 
-os.system('jupyter nbconvert --to python Pytorch_dataloader.ipynb')
 from Pytorch_dataloader import dataloader_PET
 
-os.system('jupyter nbconvert --to python gradcam.ipynb')
 from gradcam import *
 
-os.system('jupyter nbconvert --to python Pytorch_utils.ipynb')
 from Pytorch_utils import *
 
-os.system('jupyter nbconvert --to python roc_Precision_Recall.ipynb')
 from roc_Precision_Recall import *
 
 
@@ -311,9 +307,7 @@ def evaluation(model, list_patient, label_classe, scale, sigma, dim, spacing, nu
             dice_lesion[i] = (np.sum(2 * image_label * image_seg_threshold) + smooth)/(np.sum(image_label + image_seg_threshold) + smooth)
             count += 1        
 
-        #nb_lesion, nb_lesion_pred = count_nb_lesion(list_patient[i], image_seg_threshold, dim, spacing)
-        _, nb_lesion_pred = nd.label(image_seg)
-        _, nb_lesion = nd.label(image_label)  
+        nb_lesion, nb_lesion_pred = count_nb_lesion(list_patient[i], image_seg_threshold, dim, spacing)
         nb_lesion_total += nb_lesion
         nb_lesion_pred_total += nb_lesion_pred
 
