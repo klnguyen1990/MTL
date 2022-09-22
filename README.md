@@ -17,9 +17,9 @@ Wrokspace :
 Pretrained nnUnet: run all python scripts below in fllowing order
 - setOrig.py : to set all images towards the same original and pixel spacing.
 - makejson.ipynb : to generate data JSON file which containt all information about data (labels, train/val dataset)
-- run 'nnUNet_plan_and_preprocess -t $task --verify_dataset_integrity' to check where dataset respect to nnUnet format for input.
+- run on terminal : 'nnUNet_plan_and_preprocess -t $task --verify_dataset_integrity' to check where dataset respect to nnUnet format for input.
   Replace $task by 1 for PET images with SUV normalization
-- run 'nnUNet_train 3d_fullres nnUNetTrainerV2 $task $fold' to obtain a pretrained model. This pretrained model will be stocked in '/media/nguyen-k/nnUNet_trained_models/nnUNet/3d_fullres/Task001/nnUNetTrainerV2__nnUNetPlansv2.1/fold_0/model_best.model.pkl'
+- run on terminal 'nnUNet_train 3d_fullres nnUNetTrainerV2 $task $fold' to obtain a pretrained model. This pretrained model will be stocked in '/media/nguyen-k/nnUNet_trained_models/nnUNet/3d_fullres/Task001/nnUNetTrainerV2__nnUNetPlansv2.1/fold_0/model_best.model.pkl'
 
 Main program : 
 - Pytorch_multitask_nnunet.ipynb (MTL-3) : Treatment reponse classification + seg + autoencoder
@@ -35,7 +35,7 @@ Other program :
 - list_patient.ipynb : train/test split for treatment reponse classification
 - list_patient_diff.ipynb : train/test split for diffuse classification
 - Pytorch_utils : contains posprocessing tools, display graphics, get balance data, functions to calculate FROC 
-- preprocessing_Pytorch : image preprocessing, get list patient/label functions
+- preprocessing_Pytorch : image preprocessing, list patient/label retreiving functions
 - Stats.py / P_value : compute p-value using Delong method
 - roc_Precision_Recall.py : compute AUCROC score and display ROC curves 
 - plot_froc.ipynb : display FROC curves
