@@ -34,7 +34,7 @@
 - Pytorch_model.py : containt architecture of models
 - Pytorch_dataloader.py : load data into minibatch + data augmentation
 
-Other program : 
+# Other program : 
 - list_patient.ipynb : train/test split for treatment reponse classification
 - list_patient_diff.ipynb : train/test split for diffuse classification
 - Pytorch_utils : contains posprocessing tools, display graphics, get balance data, functions to calculate FROC 
