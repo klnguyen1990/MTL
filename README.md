@@ -6,7 +6,7 @@ Wrokspace :
   * sub-directories : 
    - List_Patient_0 : contains list of train/val/test set for the Treatment reponse classification over 5 folds
    - List_Patient_diff_0 : contains list of train/val/test set for Treatment reponse classification and diffuse classification over 5 folds
-   - Comparatif : stocks results of several MTL models
+   - Comparatif : stocks results of several MTL models (prob prediction, accuracy, ROC curves, loss, gradcam heatmap) for each fold as well as 5 fold average prob prediction 
       * Archives_MTL3 (MTL-3) : for Treatment reponse classification + diffuse classification + autoencoder
       * Archives_4diffuse_noSeg (MTL-3DF) : for Treatment reponse classification + diffuse classification + autoencoder
       * Archives_4diffuse (MTL-4) : for Treatment reponse classification + diffuse classification + seg + autoencoder
