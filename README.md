@@ -4,15 +4,15 @@ Wrokspace :
 - Structure of the workspace directory : 
   * scripts : pretrained nnUnet, main program, other program (listed bellow)
   * sub-directories : 
-    -- List_Patient_0 : contains list of train/val/test set for the Treatment reponse classification over 5 folds
-    -- List_Patient_diff_0 : contains list of train/val/test set for Treatment reponse classification and diffuse classification over 5 folds
-    -- Comparatif : stocks results of several MTL models
-      -- Archives_MTL3 (MTL-3) : for Treatment reponse classification + diffuse classification + autoencoder
-      -- Archives_4diffuse_noSeg (MTL-3DF) : for Treatment reponse classification + diffuse classification + autoencoder
-      -- Archives_4diffuse (MTL-4) : for Treatment reponse classification + diffuse classification + seg + autoencoder
-      -- Archives_Encodeur (base model) : for Treatment reponse classification only  
-    -- imagesPET_Positif/Negatif : stock compressed niffti images for patient avec ou sans focal lesion (use in list_patient.ipynb)
-    -- label_seg : stock focal lesion grounthTrue in compressed niffti format (used in prepocessing_Pytorch.py)
+   - List_Patient_0 : contains list of train/val/test set for the Treatment reponse classification over 5 folds
+   - List_Patient_diff_0 : contains list of train/val/test set for Treatment reponse classification and diffuse classification over 5 folds
+   - Comparatif : stocks results of several MTL models
+      * Archives_MTL3 (MTL-3) : for Treatment reponse classification + diffuse classification + autoencoder
+      * Archives_4diffuse_noSeg (MTL-3DF) : for Treatment reponse classification + diffuse classification + autoencoder
+      * Archives_4diffuse (MTL-4) : for Treatment reponse classification + diffuse classification + seg + autoencoder
+      * Archives_Encodeur (base model) : for Treatment reponse classification only  
+   - imagesPET_Positif/Negatif : stock compressed niffti images for patient avec ou sans focal lesion (use in list_patient.ipynb)
+   - label_seg : stock focal lesion grounthTrue in compressed niffti format (used in prepocessing_Pytorch.py)
 
 Pretrained nnUnet: run all python scripts below in fllowing order
 - setOrig.py : to set all images towards the same original and pixel spacing.
