@@ -104,7 +104,9 @@ def train(fold, model, nb_epoch, score_weight, l1_fc1, l2_fc1, dim, spacing, sca
     
     list_train, train_label_classe, list_val, val_label_classe = get_list(path_list, fold, dir_p)
     nb_train, nb_val = len(list_train), len(list_val)         
-   
+    #list_train, train_label_classe = [list_train[i] for i in range(5)], [train_label_classe[i] for i in range(5)]#
+    #list_val, val_label_classe  = [list_val[i] for i in range(5)], [val_label_classe[i] for i in range(5)]#
+    
     [train_c1, train_c2, train_c3] = [train_label_classe.count(i) for i in range(3)]
     [val_c1, val_c2, val_c3] = [val_label_classe.count(i) for i in range(3)]  
     
@@ -265,6 +267,7 @@ def train(fold, model, nb_epoch, score_weight, l1_fc1, l2_fc1, dim, spacing, sca
 
 def evaluation(model, list_patient, label_classe, scale, sigma, dim, spacing, num_workers, dir_p_1) : 
     model.eval()
+    #list_patient, label_classe = [list_patient[i] for i in range(5)], [label_classe[i] for i in range(5)]#
     prob = np.empty((len(list_patient),3))
     pred, lab = [], []
     all_image_seg = np.empty((len(list_patient),dim[0],dim[1],dim[2]))
@@ -277,6 +280,7 @@ def evaluation(model, list_patient, label_classe, scale, sigma, dim, spacing, nu
     dice_lesion  = np.zeros(len(list_patient))
     count, nb_lesion_total, nb_lesion_pred_total = 0, 0, 0
 
+    #with torch.no_grad() : 
     for i, data in enumerate(valloader) :
         
         image, labels_seg, labels, id = data
@@ -287,7 +291,7 @@ def evaluation(model, list_patient, label_classe, scale, sigma, dim, spacing, nu
         proba, reconst, seg = model(image)
         _, predictions = torch.max(proba, 1)
         
-        #Compute GRAD CAM
+        #heatmap_0 = Grad_Cam(proba,predictions[0].cpu().numpy(),model,dim)
         heatmap_0 = gradcam(model,image,dim)
         heatmap_1 = cam(model,image,dim)
         
@@ -307,12 +311,15 @@ def evaluation(model, list_patient, label_classe, scale, sigma, dim, spacing, nu
             dice_lesion[i] = (np.sum(2 * image_label * image_seg_threshold) + smooth)/(np.sum(image_label + image_seg_threshold) + smooth)
             count += 1        
 
-        nb_lesion, nb_lesion_pred = count_nb_lesion(list_patient[i], image_seg_threshold, dim, spacing)
+        #nb_lesion, nb_lesion_pred = count_nb_lesion(list_patient[i], image_seg_threshold, dim, spacing)
+        _, nb_lesion_pred = nd.label(image_seg)
+        _, nb_lesion = nd.label(image_label)  
         nb_lesion_total += nb_lesion
         nb_lesion_pred_total += nb_lesion_pred
 
         fig = plt.figure(figsize=(25,20))
         fig.patch.set_facecolor('xkcd:white')        
+        #plot_image(id, image, reconst, image_label, image_seg_threshold, labels, predictions, threshold, dice_lesion[i], nb_lesion, nb_lesion_pred, 2, 5)
         plot_gradcam(id, image, heatmap_0, heatmap_1, image_seg_threshold, image_label,labels, predictions, threshold, dice_lesion[i], nb_lesion, nb_lesion_pred, 2, 5)
         fig.savefig(dir_p_1 +'/Patient-' + id[0] + '.png', facecolor=fig.get_facecolor(), bbox_inches='tight')
         plt.close('all')      

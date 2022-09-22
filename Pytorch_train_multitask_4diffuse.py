@@ -25,10 +25,6 @@ from Pytorch_utils import *
 os.system('jupyter nbconvert --to python roc_Precision_Recall.ipynb')
 from roc_Precision_Recall import *
 
-os.system('jupyter nbconvert --to python metric_calculations.ipynb')
-from metric_calculations import *
-
-
 # In[2]:
 
 
@@ -117,6 +113,9 @@ def train(fold, model, nb_epoch, score_weight, l1_fc1, l2_fc1, l1_fc1_df, l2_fc1
     print(train_label_classe_diffuse.count(0), train_label_classe_diffuse.count(1),train_label_classe_diffuse.count(2),train_label_classe_diffuse.count(3))
 
     nb_train, nb_val = len(list_train), len(list_val)         
+    #list_train, train_label_classe, train_label_classe_diffuse = [list_train[i] for i in range(10)], [train_label_classe[i] for i in range(10)], [train_label_classe_diffuse[i] for i in range(10)]#
+    #list_val, val_label_classe, val_label_classe_diffuse  = [list_val[i] for i in range(10)], [val_label_classe[i] for i in range(10)], [val_label_classe_diffuse[i] for i in range(10)]#
+    
     [train_c1, train_c2, train_c3] = [train_label_classe.count(i) for i in range(3)]
     [val_c1, val_c2, val_c3] = [val_label_classe.count(i) for i in range(3)]  
     
@@ -300,6 +299,7 @@ def train(fold, model, nb_epoch, score_weight, l1_fc1, l2_fc1, l1_fc1_df, l2_fc1
 
 def evaluation(model, list_patient, label_classe,label_classe_diffuse, label_classe_dfo, scale, sigma, dim, spacing, num_workers, dir_p_1) : 
     model.eval()
+    #list_patient, label_classe, label_classe_diffuse = [list_patient[i] for i in range(10)], [label_classe[i] for i in range(10)], [label_classe_diffuse[i] for i in range(10)]#
     prob, prob_df = np.empty((len(list_patient),3)), np.empty((len(list_patient),4))
     pred, lab, pred_df, lab_df, lab_dfo = [], [], [], [], []
     all_image_seg = np.empty((len(list_patient),dim[0],dim[1],dim[2]))
@@ -312,6 +312,7 @@ def evaluation(model, list_patient, label_classe,label_classe_diffuse, label_cla
     dice_lesion  = np.zeros(len(list_patient))
     count, nb_lesion_total, nb_lesion_pred_total = 0, 0, 0
 
+    #with torch.no_grad() : 
     for i, data in enumerate(valloader) :
         
         image, labels_seg, labels, labels_diffuse, labels_dfo, id = data
@@ -324,7 +325,6 @@ def evaluation(model, list_patient, label_classe,label_classe_diffuse, label_cla
         _, predictions = torch.max(proba, 1)
         _, predictions_diffuse = torch.max(proba_diffuse, 1)
 
-        # compute GRAD CAM
         heatmap_0 = gradcam(model,image,dim)
         heatmap_1 = cam(model,image,dim)
         
@@ -367,16 +367,13 @@ def evaluation(model, list_patient, label_classe,label_classe_diffuse, label_cla
 
     pred = np.array(pred)
     lab = np.array(lab)
-    
-    micro_f1_DF, micro_f1_NDF, _ = get_accuracy(lab.tolist(),pred.tolist(),[0,1,2],lab_dfo)
-    micro_f1_DF_df, micro_f1_NDF_df, _ = get_accuracy(lab_df,pred_df,[0,1,2,3],lab_df)
 
     print('Classification')
-    print('Micro F1 score ', f1_score(y_true=lab, y_pred=pred, average='micro'), 'DF Micro F1 score ', micro_f1_DF, 'NDF Micro F1 score ', micro_f1_NDF)
+    print('Micro F1 score ', f1_score(y_true=lab, y_pred=pred, average='micro'))
     print('Macro F1 score ', f1_score(y_true=lab, y_pred=pred, average='macro'))
     print('Weighted F1 score ', f1_score(y_true=lab, y_pred=pred, average='weighted'))
 
-    print('Micro F1 score df ', f1_score(y_true=lab_df, y_pred=pred_df, average='micro'), 'DF Micro F1 score ', micro_f1_DF_df, 'NDF Micro F1 score ', micro_f1_NDF_df)
+    print('Micro F1 score df ', f1_score(y_true=lab_df, y_pred=pred_df, average='micro'), 'DF Micro F1 score ')
     print('Macro F1 score df', f1_score(y_true=lab_df, y_pred=pred_df, average='macro'))
     print('Weighted F1 score df ', f1_score(y_true=lab_df, y_pred=pred_df, average='weighted'))
 
