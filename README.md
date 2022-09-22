@@ -1,4 +1,7 @@
 # MTL
+TEP Image directory : 
+- '/media/nguyen-k/A75D-9A3A/CASSIOPET/dcm_baseline'
+
 Wrokspace : 
 - '/home/nguyen-k/Bureau/segCassiopet2'
 - Structure of the workspace directory : 
