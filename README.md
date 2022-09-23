@@ -22,7 +22,7 @@
 - makejson.ipynb : to generate data JSON file which containt all information about data (labels, train/val dataset)
 - run on terminal : 'nnUNet_plan_and_preprocess -t $task --verify_dataset_integrity' to check where dataset respect to nnUnet format for input.
   Replace $task by 1 for PET images with SUV normalization
-- run on terminal 'nnUNet_train 3d_fullres nnUNetTrainerV2 $task $fold' to obtain a pretrained model. This pretrained model will be stocked in '/media/nguyen-k/nnUNet_trained_models/nnUNet/3d_fullres/Task001/nnUNetTrainerV2__nnUNetPlansv2.1/fold_0/model_best.model.pkl' (used in Pytorch_multitas***.ipynb)
+- run on terminal 'nnUNet_train 3d_fullres nnUNetTrainerV2 $task $fold' to obtain a pretrained model. Replace $task by 1 and $fold by 0. This pretrained model will be stocked in '/media/nguyen-k/nnUNet_trained_models/nnUNet/3d_fullres/Task001/nnUNetTrainerV2__nnUNetPlansv2.1/fold_0/model_best.model.pkl' (used in Pytorch_multitas***.ipynb)
 
 # Main program : 
 - Pytorch_multitask_nnunet.ipynb (MTL-3) : Treatment reponse classification + seg + autoencoder
