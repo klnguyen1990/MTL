@@ -23,6 +23,7 @@
 - run on terminal : 'nnUNet_plan_and_preprocess -t $task --verify_dataset_integrity' to check where dataset respect to nnUnet format for input.
   Replace $task by 1 for PET images with SUV normalization
 - run on terminal 'nnUNet_train 3d_fullres nnUNetTrainerV2 $task $fold' to obtain a pretrained model. Replace $task by 1 and $fold by 0. This pretrained model will be stocked in '/media/nguyen-k/nnUNet_trained_models/nnUNet/3d_fullres/Task001/nnUNetTrainerV2__nnUNetPlansv2.1/fold_0/model_best.model.pkl' (used in Pytorch_multitask_***.ipynb)
+- You can run the shell script runUnet3D.sh which will execute all python scripts (setOrig.ipynb, makejson.ipynb) and all commands above.
 
 # Main program : 
 - Pytorch_multitask_nnunet.ipynb (MTL-3) : Treatment reponse classification + seg + autoencoder
